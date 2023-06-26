@@ -10,5 +10,6 @@ namespace Domain.Pagos.Repositories
 {
     public interface IPagoRepository : IRepository<Pago, Guid>
     {
+        Task UpdateAsync(Pago pago);
     }
 }

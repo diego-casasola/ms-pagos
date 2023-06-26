@@ -6,9 +6,10 @@ using System.Threading.Tasks;
 
 namespace Application.Pagos.Dto
 {
-    public class VentaDto
+    public class PagoDto
     {
-        public Guid PagoId { get; set; }
-        public Decimal Monto { get; set; }
+        public Guid IdPago { get; set; }
+        public float Monto { get; set; }
+        public int Estado { get; set; }
     }
 }

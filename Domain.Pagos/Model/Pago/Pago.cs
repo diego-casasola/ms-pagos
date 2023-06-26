@@ -10,14 +10,23 @@ namespace Domain.Pagos.Model.Pago
     public class Pago : AggregateRoot
     {
         public Guid IdPago { get; private set; }
-        public Decimal Monto { get; private set; }
-        internal Pago(Guid idPago, Decimal monto)
+        public float Monto { get; private set; }
+        //estado de pago
+        public int Estado { get; private set; }
+        public Pago(Guid idPago, float monto, int estado)
         {
             Id = idPago;
             Monto = monto;
+            Estado = estado;
         }
 
-        internal Pago()
+        public void EditPago(float monto, int estado)
+        {
+            Monto = monto;
+            Estado = estado;
+        }
+
+        public Pago()
         {
 
         }

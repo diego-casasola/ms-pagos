@@ -26,7 +26,7 @@ namespace Infraestructure.Pagos.EF.Repository
 
         public async Task<Pago?> FindByIdAsync(Guid id)
         {
-            return await _context.Pagos.FirstOrDefaultAsync(p => p.IdPago == id);
+            return await _context.Pagos.FirstOrDefaultAsync(p => p.Id == id);
         }
 
         public Task UpdateAsync(Pago pago)

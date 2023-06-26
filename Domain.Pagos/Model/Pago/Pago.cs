@@ -9,7 +9,7 @@ namespace Domain.Pagos.Model.Pago
 {
     public class Pago : AggregateRoot
     {
-        public Guid IdPago { get; private set; }
+        public Guid Id { get; private set; }
         public float Monto { get; private set; }
         //estado de pago
         public int Estado { get; private set; }

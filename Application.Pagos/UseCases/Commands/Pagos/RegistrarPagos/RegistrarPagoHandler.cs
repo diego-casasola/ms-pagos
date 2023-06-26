@@ -25,7 +25,7 @@ namespace Application.Pagos.UseCases.Commands.Pagos.RegistrarPagos
             Pago pago = new Pago(request.IdPago, request.Monto, request.Estado);
             await _pagoRepository.CreateAsync(pago);
             await _unitOfWork.Commit();
-            return pago.IdPago;
+            return pago.Id;
         }
     }
 }

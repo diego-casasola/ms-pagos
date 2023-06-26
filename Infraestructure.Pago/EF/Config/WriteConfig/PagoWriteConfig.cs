@@ -15,7 +15,7 @@ namespace Infraestructure.Pagos.EF.Config.WriteConfig
         {
             builder.ToTable("pago");
 
-            builder.Property(x => x.IdPago).HasColumnName("idPago");
+            builder.Property(x => x.Id).HasColumnName("idPago");
             builder.Property(x => x.Monto).HasColumnName("monto");
             builder.Property(x => x.Estado).HasColumnName("estado");
 

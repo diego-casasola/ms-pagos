@@ -31,7 +31,7 @@ namespace Infraestructure.Pagos.EF
             foreach (var evento in domainEvents)
             {
                 evento.MarkAsConsumed();
-                _mediator.Publish(evento);
+                await _mediator.Publish(evento);
             }
 
             await _context.SaveChangesAsync();

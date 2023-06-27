@@ -26,6 +26,11 @@ namespace Domain.Pagos.Model.Pago
             Estado = estado;
         }
 
+        public void Pagar()
+        {
+            Estado = 1;
+        }
+
         public Pago()
         {
 

@@ -4,6 +4,7 @@ using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using System.Text.Json;
 using System.Text;
+using Application.Pagos.UseCases.Commands.Pagos.ActualizarPago;
 
 namespace WebApp.Pagos.Controllers
 {
@@ -64,7 +65,13 @@ namespace WebApp.Pagos.Controllers
         }
 
         //update pago solo el estado
-        //[Route("{id}")]
-        //[HttpPut]
+        [Route("{id}")]
+        [HttpPut]
+        public async Task<IActionResult> UpdatePago([FromRoute] Guid id, [FromBody] ActualizarPagoCommand command)
+        {
+            command.IdPago = id;
+            var result = await _mediator.Send(command);
+            return Ok(result);
+        }
     }
 }

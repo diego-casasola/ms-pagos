@@ -15,8 +15,4 @@
     <ProjectReference Include="..\Domain.Pagos\Domain.Pagos.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="UseCases\Commands\Pagos\ActualizarPagoCommand.cs\" />
-  </ItemGroup>
-
 </Project>

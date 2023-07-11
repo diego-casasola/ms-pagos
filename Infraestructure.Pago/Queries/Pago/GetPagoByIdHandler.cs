@@ -34,6 +34,7 @@ namespace Infraestructure.Pagos.Queries.Pago
             return new PagoDto()
             {
                 IdPago = pago.IdPago,
+                ProyectoId = pago.ProyectoId,
                 Monto = pago.Monto,
                 Estado = pago.Estado
             };

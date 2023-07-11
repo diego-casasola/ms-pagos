@@ -14,13 +14,13 @@ namespace Domain.Pagos.Factories
             return new Pago();
         }
 
-        public Pago CrearPago(Guid idPago, float monto, int estado)
+        public Pago CrearPago(Guid idPago, Guid proyectoId, float monto, int estado)
         {
             if (idPago == null || monto == null)
             {
                 return new Pago();
             }
-            return new Pago(idPago, monto, estado);
+            return new Pago(idPago, proyectoId, monto, estado);
         }
     }
 }

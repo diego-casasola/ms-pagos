@@ -1,14 +1,15 @@
-﻿using System;
+﻿using SharedKernel.Core;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Application.Pagos.Dto
+namespace SharedKernel.IntegrationEvents
 {
-    public class PagoDto
+    public record DonacionCreada : IntegrationEvent
     {
-        public Guid IdPago { get; set; }
+        public Guid DonacionId { get; set; }
         public Guid ProyectoId { get; set; }
         public float Monto { get; set; }
         public int Estado { get; set; }

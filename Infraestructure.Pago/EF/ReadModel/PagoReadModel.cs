@@ -11,6 +11,10 @@ namespace Infraestructure.Pagos.EF.ReadModel
         [Column("idPago")]
         public Guid IdPago { get; set; }
 
+        [Key]
+        [Column("proyectoId")]
+        public Guid ProyectoId { get; set; }
+
         [Required]
         [Column("monto")]
         public float Monto { get; set; }

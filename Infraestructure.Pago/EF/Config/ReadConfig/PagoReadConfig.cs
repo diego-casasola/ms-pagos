@@ -16,6 +16,7 @@ namespace Infraestructure.Pagos.EF.Config.ReadConfig
             builder.ToTable("pago");
             builder.HasKey(x => x.IdPago);
             builder.Property(x => x.IdPago).HasColumnName("idPago").IsRequired();
+            builder.Property(x=> x.ProyectoId).HasColumnName("proyectoId").IsRequired();
             builder.Property(x => x.Monto).HasColumnName("monto").IsRequired();
             builder.Property(x => x.Estado).HasColumnName("estado").IsRequired();
         }

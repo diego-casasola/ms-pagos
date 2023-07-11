@@ -22,7 +22,7 @@ namespace Application.Pagos.UseCases.Commands.Pagos.RegistrarPagos
         }
         public async Task<Guid> Handle(RegistrarPagoCommand request, CancellationToken cancellationToken)
         {
-            Pago pago = new Pago(request.IdPago, request.Monto, request.Estado);
+            Pago pago = new Pago(request.IdPago, request.ProyectoId, request.Monto, request.Estado);
             await _pagoRepository.CreateAsync(pago);
             await _unitOfWork.Commit();
             return pago.Id;

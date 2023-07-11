@@ -9,7 +9,7 @@ namespace Domain.Pagos.Factories
 {
     public interface IPagoFactory
     {
-        Pago CrearPago(Guid idPago, float monto, int estado);
+        Pago CrearPago(Guid idPago, Guid proyectoId, float monto, int estado);
         Pago CrearPago();
     }
 }

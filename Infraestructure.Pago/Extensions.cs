@@ -15,6 +15,8 @@ using System.Reflection;
 using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
+using MassTransit;
+using Application.Pagos.UseCases.Consumers;
 
 namespace Infraestructure.Pagos
 {
@@ -22,7 +24,7 @@ namespace Infraestructure.Pagos
     {
         public static IServiceCollection AddInfrastrucutre(this IServiceCollection services, IConfiguration configuration)
         {
-            services.AddMediatR(Assembly.GetExecutingAssembly());
+            services.AddMediatR(configuration => configuration.RegisterServicesFromAssemblies(Assembly.GetExecutingAssembly()));
             services.AddApplication();
             services.AddDbContext<ReadDbContext>(options =>
             {
@@ -36,12 +38,33 @@ namespace Infraestructure.Pagos
             services.AddScoped<IUnitOfWork, UnitOfWork>();
             services.AddScoped<IPagoRepository, PagoRepository>();
 
+            AddRabbitMq(services, configuration);
+
             return services;
         }
 
-        public static bool Contains(this string source, string toCheck, StringComparison comp)
+        public static void AddRabbitMq(this IServiceCollection services, IConfiguration configuration)
         {
-            return source?.IndexOf(toCheck, comp) >= 0;
+            var rabbitMqHost = configuration["RabbitMq:Host"];
+            var rabbitMqPort = configuration["RabbitMq:Port"];
+            var rabbitMqUserName = configuration["RabbitMq:UserName"];
+            var rabbitMqPassword = configuration["RabbitMq:Password"];
+
+            services.AddMassTransit(config =>
+            {
+                config.AddConsumer<DonacionCreadaConsumer>().Endpoint(endpoint => endpoint.Name = DonacionCreadaConsumer.QueueName);
+
+                config.UsingRabbitMq((context, cfg) =>
+                {
+                    var uri = string.Format("amqps://{0}:{1}@{2}:{3}", rabbitMqUserName, rabbitMqPassword, rabbitMqHost, rabbitMqPort);
+                    cfg.Host(uri);
+
+                    cfg.ReceiveEndpoint(DonacionCreadaConsumer.QueueName, c =>
+                    {
+                        c.ConfigureConsumer<DonacionCreadaConsumer>(context);
+                    });
+                });
+            });
         }
     }
 }

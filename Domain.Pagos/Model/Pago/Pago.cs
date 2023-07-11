@@ -1,4 +1,5 @@
-﻿using ShareKernel.Core;
+﻿using Domain.Pagos.Event;
+using ShareKernel.Core;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -31,6 +32,7 @@ namespace Domain.Pagos.Model.Pago
         public void Pagar()
         {
             Estado = 1;
+            AddDomainEvent(new PagoCompletado(pagoId: Id, proyectoId: ProyectoId, monto: Monto, estado: Estado));
         }
 
         public Pago()

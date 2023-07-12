@@ -1,27 +1,25 @@
 ﻿using Domain.Pagos.Event;
 using MassTransit;
 using MediatR;
-using ShareKernel.Core;
+using Shared.Core;
 
 namespace Application.Pagos.UseCases.DomainEventHandler
 {
-    public class PublishingIntegrationEventWhenDonacionCompletadaHandler : INotificationHandler<ConfirmedDomainEvent<PagoCompletado>>
+    public class PublishingIntegrationEventWhenDonacionCompletadaHandler : INotificationHandler<ConfirmedDomainEvent<DonacionCompletada>>
     {
         private readonly IPublishEndpoint _publishEndpoint;
         public PublishingIntegrationEventWhenDonacionCompletadaHandler(IPublishEndpoint publishEndpoint)
         {
             _publishEndpoint = publishEndpoint;
         }
-        public async Task Handle(ConfirmedDomainEvent<PagoCompletado> notification, CancellationToken cancellationToken)
+        public async Task Handle(ConfirmedDomainEvent<DonacionCompletada> notification, CancellationToken cancellationToken)
         {
-            SharedKernel.IntegrationEvents.DonacionCreada evento = new SharedKernel.IntegrationEvents.DonacionCreada()
+            Shared.IntegrationEvents.DonacionCompletada evento = new Shared.IntegrationEvents.DonacionCompletada()
             {
                 DonacionId = notification.DomainEvent.PagoId,
                 ProyectoId = notification.DomainEvent.ProyectoId,
-                Monto = notification.DomainEvent.Monto,
-                Estado = notification.DomainEvent.Estado
             };
-            await _publishEndpoint.Publish<SharedKernel.IntegrationEvents.DonacionCreada>(evento);
+            await _publishEndpoint.Publish<Shared.IntegrationEvents.DonacionCompletada>(evento);
         }
     }
 }

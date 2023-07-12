@@ -1,15 +1,23 @@
-﻿using ShareKernel.Core;
+﻿using Shared.Core;
+using Shared.Rules;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
-namespace ShareKernel.ValueObjects
+namespace Shared.ValueObjects
 {
     public record CantidadValue : ValueObject
     {
         public int Value { get; }
+
         public CantidadValue(int value)
         {
+            CheckRule(new NotNullRule(value));
             if (value < 0)
             {
-                throw new BussinessRuleValidationException("Cantidad value cannot be negative");
+                throw new BussinessRuleValidationException("No puede ser menor a 0");
             }
             Value = value;
         }

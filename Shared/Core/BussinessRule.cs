@@ -4,10 +4,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ShareKernel.Core
+namespace Shared.Core
 {
-    public interface IUnitOfWork
+    public interface IBussinessRule
     {
-        Task Commit();
+        bool IsValid();
+
+        string Message { get; }
     }
 }

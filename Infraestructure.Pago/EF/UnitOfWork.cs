@@ -1,6 +1,6 @@
 ﻿using Infraestructure.Pagos.EF.Context;
 using MediatR;
-using ShareKernel.Core;
+using Shared.Core;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -22,7 +22,7 @@ namespace Infraestructure.Pagos.EF
 
         public async Task Commit()
         {
-            var domainEvents = _context.ChangeTracker.Entries<Entity>()
+            var domainEvents = _context.ChangeTracker.Entries<Entity<Guid>>()
                 .Select(x => x.Entity.DomainEvents)
                 .SelectMany(x => x)
                 .Where(x => !x.Consumed)

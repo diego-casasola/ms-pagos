@@ -1,5 +1,4 @@
-﻿using Application.Ventas;
-using Domain.Pagos.Repositories;
+﻿using Domain.Pagos.Repositories;
 using Infraestructure.Pagos.EF;
 using Infraestructure.Pagos.EF.Context;
 using Infraestructure.Pagos.EF.Repository;
@@ -7,7 +6,7 @@ using MediatR;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using ShareKernel.Core;
+using Shared.Core;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -17,6 +16,7 @@ using System.Text;
 using System.Threading.Tasks;
 using MassTransit;
 using Application.Pagos.UseCases.Consumers;
+using Application.Pagos;
 
 namespace Infraestructure.Pagos
 {

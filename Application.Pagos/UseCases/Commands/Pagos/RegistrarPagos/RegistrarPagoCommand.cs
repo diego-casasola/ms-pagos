@@ -11,10 +11,10 @@ namespace Application.Pagos.UseCases.Commands.Pagos.RegistrarPagos
     {
         public Guid IdPago { get; set; }
         public Guid ProyectoId { get; set; }
-        public float Monto { get; set;}
+        public decimal Monto { get; set;}
         public int Estado { get; set;}
 
-        public RegistrarPagoCommand(Guid idPago, Guid proyectoId, float monto, int estado)
+        public RegistrarPagoCommand(Guid idPago, Guid proyectoId, decimal monto, int estado)
         {
             IdPago = idPago;
             ProyectoId = proyectoId;
@@ -22,7 +22,7 @@ namespace Application.Pagos.UseCases.Commands.Pagos.RegistrarPagos
             Estado = estado;
         }
 
-        public RegistrarPagoCommand(Guid idPago, Guid proyectoId, float monto)
+        public RegistrarPagoCommand(Guid idPago, Guid proyectoId, decimal monto)
         {
             IdPago = idPago;
             ProyectoId = proyectoId;

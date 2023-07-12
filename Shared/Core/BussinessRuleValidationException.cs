@@ -1,7 +1,11 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Runtime.Serialization;
+using System.Text;
+using System.Threading.Tasks;
 
-namespace ShareKernel.Core
+namespace Shared.Core
 {
     [Serializable]
     public class BussinessRuleValidationException : Exception
@@ -31,8 +35,8 @@ namespace ShareKernel.Core
 
         public override string ToString()
         {
-            string name = BrokenRule == null ? "BussinessRule" : BrokenRule.GetType().FullName;
-            return $"{ name }: { Details } ";
+            string? name = BrokenRule == null ? "BussinessRule" : BrokenRule.GetType().FullName;
+            return $"{name}: {Details} ";
         }
     }
 }

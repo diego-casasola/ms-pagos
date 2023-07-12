@@ -14,7 +14,7 @@ namespace Domain.Pagos.Factories
             return new Pago();
         }
 
-        public Pago CrearPago(Guid idPago, Guid proyectoId, float monto, int estado)
+        public Pago CrearPago(Guid idPago, Guid proyectoId, decimal monto, int estado)
         {
             if (idPago == null || monto == null)
             {

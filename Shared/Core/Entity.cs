@@ -1,8 +1,14 @@
-﻿namespace ShareKernel.Core
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace Shared.Core
 {
-    public abstract class Entity
+    public abstract class Entity<TId>
     {
-        public Guid Id { get; protected set; }
+        public TId Id { get; protected set; }
 
         private readonly ICollection<DomainEvent> _domainEvents;
 
@@ -25,7 +31,7 @@
 
         protected void CheckRule(IBussinessRule rule)
         {
-            if(rule is null)
+            if (rule is null)
             {
                 throw new ArgumentException("Rule cannot be null");
             }

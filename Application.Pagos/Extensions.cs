@@ -2,7 +2,7 @@
 using Microsoft.Extensions.DependencyInjection;
 using System.Reflection;
 
-namespace Application.Ventas
+namespace Application.Pagos
 {
     public static class Extensions
     {

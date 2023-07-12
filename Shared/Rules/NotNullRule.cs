@@ -1,6 +1,11 @@
-﻿using ShareKernel.Core;
+﻿using Shared.Core;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
-namespace ShareKernel.Rules
+namespace Shared.Rules
 {
     public class NotNullRule : IBussinessRule
     {
@@ -11,7 +16,7 @@ namespace ShareKernel.Rules
             _value = value;
         }
 
-        public string Message => "Object cannot be null";
+        public string Message => "Objeto no puede ser nulo";
 
         public bool IsValid()
         {

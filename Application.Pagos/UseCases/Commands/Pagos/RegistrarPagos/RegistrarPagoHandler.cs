@@ -1,7 +1,7 @@
 ﻿using Domain.Pagos.Model.Pago;
 using Domain.Pagos.Repositories;
 using MediatR;
-using ShareKernel.Core;
+using Shared.Core;
 using System;
 using System.Collections.Generic;
 using System.Linq;

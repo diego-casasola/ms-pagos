@@ -20,10 +20,7 @@ namespace Application.Pagos.UseCases.Consumers
 
         public Task Consume(ConsumeContext<DonacionCreada> context)
         {
-            int monto = (int)context.Message.Monto;
-            context.Message.Monto = monto;
             DonacionCreada @event = context.Message;
-            System.Diagnostics.Debug.WriteLine($"DonacionCreadaConsumer: {monto}");
             RegistrarPagoCommand command = new RegistrarPagoCommand(@event.DonacionId, @event.ProyectoId, @event.Monto);
             return _mediator.Send(command);
         }

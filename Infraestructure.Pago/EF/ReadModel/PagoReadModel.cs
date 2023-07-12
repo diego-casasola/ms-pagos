@@ -17,7 +17,7 @@ namespace Infraestructure.Pagos.EF.ReadModel
 
         [Required]
         [Column("monto")]
-        public float Monto { get; set; }
+        public decimal Monto { get; set; }
 
         [Required]
         [Column("estado")]

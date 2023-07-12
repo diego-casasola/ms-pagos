@@ -10,7 +10,7 @@ namespace Application.Pagos.Dto
     {
         public Guid IdPago { get; set; }
         public Guid ProyectoId { get; set; }
-        public float Monto { get; set; }
+        public decimal Monto { get; set; }
         public int Estado { get; set; }
     }
 }

@@ -5,6 +5,9 @@ using Microsoft.AspNetCore.Mvc;
 using System.Text.Json;
 using System.Text;
 using Application.Pagos.UseCases.Commands.Pagos.ActualizarPago;
+using QRCoder;
+using System.Drawing;
+using System.Drawing.Imaging;
 
 namespace WebApp.Pagos.Controllers
 {
@@ -36,7 +39,7 @@ namespace WebApp.Pagos.Controllers
 
         }
 
-        [Route("qr/{id}")]
+        [Route("image/qr/{id}")]
         [HttpGet]
         public async Task<IActionResult> GetQR([FromRoute] Guid id)
         {
@@ -50,10 +53,19 @@ namespace WebApp.Pagos.Controllers
                 return NotFound();
             }
 
-            string jsonResult = JsonSerializer.Serialize(result);
-            string base64Result = Convert.ToBase64String(Encoding.UTF8.GetBytes(jsonResult));
+            QRCodeGenerator qrGenerator = new QRCodeGenerator();
+            string json = JsonSerializer.Serialize(result);
+            QRCodeData qrCodeData = qrGenerator.CreateQrCode(json, QRCodeGenerator.ECCLevel.Q);
+            QRCode qrCode = new QRCode(qrCodeData);
+            Bitmap qrCodeImage = qrCode.GetGraphic(20);
 
-            return Ok(base64Result);
+            using (MemoryStream stream = new MemoryStream())
+            {
+                qrCodeImage.Save(stream, ImageFormat.Png);
+                byte[] imageBytes = stream.ToArray();
+
+                return Ok(imageBytes);
+            }
         }
 
 
